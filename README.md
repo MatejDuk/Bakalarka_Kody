@@ -6,9 +6,9 @@ FSD_Testing.r <- viaže sa k časti 5.1.3., pre správne spustenie treba najskô
 
 Vysledky_FSD.xlsx <- obsahuje podrobné výsledky našich testov v časti 5.1.3
 
-SSD_Testing.r <- viaže sa k časti 
+SSD_Testing.r <- viaže sa k časti 5.2, pre správne spustenie treba najskôr spustiť funkciu Model1_SSD a Model2_Simplex
 
-Výsledky_SSD.xlsx <- 
+Výsledky_SSD.xlsx <- obsahuje podrobné výsledky našich testov v časti 5.2
 
 Analyza.r <- viaže sa k časti 5.3, pre správne spustenie treba najskôr spustiť funkciu Model2_Simplex, Model3_Simplex a Model3_IPM
 
