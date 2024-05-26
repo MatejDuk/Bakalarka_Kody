@@ -45,7 +45,7 @@ V <- V * 252/20
 
 ############################################################################################################################################################
 #Markowitz
-y <- seq(from = max(r)-0.01, to = 0, by = -0.01)
+y <- seq(from = max(r), to = 0.04, by = -0.01)
 x <- rep(0, length(y))
 n <- length(Symbols)
 W <- NULL
@@ -98,11 +98,12 @@ if (length(neefektivne)>0){
 
 for (k in 1:ncol(new_W)) {
   if(k %in% neefektivne){
-    lines(new_x[k], new_y[k], type = "p", pch = 19, col = "red", cex = 2.2)
+    lines(new_x[k], new_y[k], type = "p", pch = 19, col = "red", cex = 2.4)
   }
   else{
-    lines(new_x[k], new_y[k], type = "p", pch = 19, col = "green", cex = 2.2)
+    lines(new_x[k], new_y[k], type = "p", pch = 19, col = "green", cex = 2.4)
   }
+  text(new_x[k],new_y[k], labels = k, cex = 1, font = 2)
 }
 legend("bottomright", legend = c("Markowitzova efektívna hranica", "SSD efektívne", "SSD neefektívne"), 
        col = c("black", "green", "red"), 
@@ -113,13 +114,13 @@ legend("bottomright", legend = c("Markowitzova efektívna hranica", "SSD efektí
 
 #########################################################################################################
 #Model3_IPM - pre kazde neefektivne portfolio sa najde to ktore mu dominuje na zaklade modelu3, aj sa vykresli graf s povodnym portfoliom a k nemu dominantnym
-plot(x = x[8:31], y = y[8:31],col = "red", type = "l", xlab = "sigma_p", ylab = "r_p")
+plot(x = x[9:31], y = y[9:31],col = "red", type = "l", xlab = "sigma_p", ylab = "r_p")
 lines(x = new_x, y=new_y, col='black', type = 'l')
 for(j in 1:length(neefektivne)){
   cp <- neefektivne[j]
   ref <- as.matrix(Port_vynosy[,cp])
   lines(new_x[cp],new_y[cp], type = "p", pch =19, col = "red", cex = 3.4)
-  text(new_x[cp],new_y[cp], labels = j, cex = 1.2, font = 2)
+  text(new_x[cp],new_y[cp], labels = j+11, cex = 1.2, font = 2)
   R <- Akcie_vynosy
   vysledok <- Model3_Simplex(R,ref)
   vys <- Model3_IPM(R,ref)
@@ -127,7 +128,7 @@ for(j in 1:length(neefektivne)){
   x1 <- sqrt(rs %*% V %*% rs)
   y1 <- r %*% rs
   lines(x1, y1, type = "p",pch = 19, col = "blue", cex = 3.4)
-  text(x1,y1, labels = j, cex = 1.2, col = "white", font = 2)
+  text(x1,y1, labels = j+11, cex = 1.2, col = "white", font = 2)
 }
 legend("bottomright", legend = c("Markowitzova efektívna hranica", "SSD neefektívne", "Dominantné portfólio"), 
        col = c("black", "red", "blue"), 
@@ -135,3 +136,4 @@ legend("bottomright", legend = c("Markowitzova efektívna hranica", "SSD neefekt
        pch = c(NA, 19, 19), 
        pt.cex = c(1, 2, 2),  
        title = "Legenda")
+
